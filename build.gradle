@@ -8,6 +8,8 @@ version BUILD_VERSION
 
 java.sourceCompatibility JavaVersion.VERSION_11
 java.targetCompatibility JavaVersion.VERSION_16
+compileJava.options.encoding = 'UTF-8'
+javadoc.options.addStringOption('Xdoclint:none', '-quiet')
 
 repositories {
     mavenCentral()
@@ -29,12 +31,21 @@ test {
 java {
     withJavadocJar()
     withSourcesJar()
+    manifest {
+        attributes 'Build-By': BUILD_AUTHOR,
+                'Build-Date': new Date(),
+                'Build-Jdk': System.getProperty('java.version'),
+                'Package': BUILD_GROUP,
+                'Name': BUILD_NAME,
+                'Created-By': BUILD_AUTHOR
+    }
 }
 
 javadoc {
     if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
+    options.encoding = 'UTF-8'
 }
 
 /*publishing {
@@ -48,6 +59,7 @@ javadoc {
                 name = BUILD_NAME
                 description = BUILD_DESCRIPTION
                 url = BUILD_URL
+                inceptionYear = BUILD_INCEPTION_YEAR
                 licenses {
                     license {
                         name = BUILD_LICENSE_NAME
