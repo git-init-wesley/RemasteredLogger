@@ -7,8 +7,8 @@
 
 package codes.wesley.dev.remasteredlogger.logger;
 
-import com.etsuko.api.logger.interfaces.ILogger;
-import com.etsuko.api.logger.interfaces.ILoggerFactory;
+import codes.wesley.dev.remasteredlogger.logger.interfaces.ILogger;
+import codes.wesley.dev.remasteredlogger.logger.interfaces.ILoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
