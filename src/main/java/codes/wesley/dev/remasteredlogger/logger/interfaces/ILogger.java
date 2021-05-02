@@ -59,7 +59,6 @@ public interface ILogger extends Logger {
     /**
      * <strong>EN:</strong> The latter can be modified during a recreation of the Logger during the reimplementation.<br>
      * <strong>FR:</strong> Cette dernière pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.
-     * Cette dernière peut-être modifiable selon l'utilisateur.
      *
      * @return <br><strong>EN:</strong> Simple date format.<br><strong>FR:</strong> Le format de la date.
      */
