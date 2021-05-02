@@ -6,7 +6,7 @@ plugins {
 group BUILD_GROUP
 version BUILD_VERSION
 
-java.sourceCompatibility JavaVersion.VERSION_1_8
+java.sourceCompatibility JavaVersion.VERSION_11
 java.targetCompatibility JavaVersion.VERSION_16
 
 repositories {
