@@ -32,6 +32,12 @@ public class LoggerFactory implements ILoggerFactory {
     private final File logsDir;
     private final ConcurrentMap<String, ILogger> loggers = new ConcurrentHashMap<>();
 
+    /**
+     * <strong>EN:</strong> This constructor allows you to create a LoggerFactory.<br>
+     * <strong>FR:</strong> Ce constructeur permet de créer un LoggerFactory.
+     *
+     * @param dir <br><strong>EN:</strong> The folder where the message recording files will be saved.<br><strong>FR:</strong> Le dossier où les fichiers d'enregistrement des messages seront enregistrés.
+     */
     public LoggerFactory(File dir) throws InternalError {
         if (!dir.exists())
             if (!dir.mkdir())
