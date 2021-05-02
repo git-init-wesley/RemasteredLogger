@@ -562,6 +562,12 @@ public interface ILogger extends Logger {
         this.error(msg, t);
     }
 
+    /**
+     * <strong>EN:</strong> Levels is a {@link java.util.Enumeration} listing all possible level types in the Logger.<br>
+     * This enumeration behaves in such a way as to have a {@link Colors} allowing better visibility in console when retrieving the latter.<br>
+     * <strong>FR:</strong> Levels est une {@link java.util.Enumeration} listant tous les types de niveau possible dans le Logger.<br>
+     * Cette énumération se comporte de façon à avoir une {@link Colors} permettant une meilleure visibilité en console lors de la récupération de cette dernière.
+     */
     enum Levels {
         TRACE(Colors.CYAN),
         DEBUG(Colors.PURPLE),
@@ -576,11 +582,20 @@ public interface ILogger extends Logger {
             this.colors = colors;
         }
 
+        /**
+         * @return <br><strong>EN:</strong> The color. {@link Colors}<br><strong>FR:</strong> La couleur. {@link Colors}
+         */
         public Colors getColors() {
             return this.colors;
         }
     }
 
+    /**
+     * <strong>EN:</strong> Colors is a {@link java.util.Enumeration} listing all possible level types in the Logger.<br>
+     * This enumeration behaves in such a way as to have {@link String} of the color allowing a better visibility in console during the retrieval of the latter.<br>
+     * <strong>FR:</strong> Colors est une {@link java.util.Enumeration} listant tous les types de couleur utilisable pour le Logger.<br>
+     * Cette énumération se comporte de façon à avoir {@link String} de la couleur permettant une meilleur visibilité en console lors de la récupération de cette dernière.
+     */
     enum Colors {
         RESET("\u001b[0m"),
         BLACK("\u001b[30m"),
@@ -598,6 +613,9 @@ public interface ILogger extends Logger {
             this.color = color;
         }
 
+        /**
+         * @return <br><strong>EN:</strong> The color. {@link String}<br><strong>FR:</strong> La couleur. {@link String}
+         */
         public String getColor() {
             return this.color;
         }
