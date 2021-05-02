@@ -8,7 +8,7 @@
 
 [Versioning]: https://img.shields.io/static/v1?label=Versioning&message=View&style=for-the-badge&color=ff69b4
 
-[Release]: https://img.shields.io/github/v/release/kanekireal/RemasteredLogger?style=for-the-badge
+[Release]: https://img.shields.io/static/v1?label=Release&message=v1.1.0&style=for-the-badge&color=red
 
 [Version]: https://img.shields.io/static/v1?label=Version&message=1.1.0&style=for-the-badge&color=light_green
 
