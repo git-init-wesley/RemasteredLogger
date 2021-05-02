@@ -11,17 +11,41 @@ package codes.wesley.dev.remasteredlogger.logger;
 import codes.wesley.dev.remasteredlogger.logger.interfaces.ILogger;
 import codes.wesley.dev.remasteredlogger.logger.interfaces.ILoggerFactory;
 
+/**
+ * <strong>EN:</strong> Logger consists of adding processing to allow transmission and storage messages following events.<br>
+ * This class is a default Logger if the user does not want to create one himself by implementing {@link ILogger}, by default all {@link Levels} are enabled.<br>
+ * <strong>FR:</strong> Logger consiste à ajouter un traitement pour permettre la transmission et le stockage des messages suite à des événements.<br>
+ * Cette classe est un Logger de défaut si l'utilisateur ne souhaite pas en crée lui-même en implémentant {@link ILogger}, par défaut tous les {@link Levels} sont activé.
+ *
+ * @author Levasseur Wesley
+ * @version 1.1.0
+ * @see ILogger
+ */
 public class Logger implements ILogger {
 
     private final String name;
     private final ILoggerFactory loggerFactory;
     private boolean debug = true, trace = true, info = true, warn = true, error = true;
 
+    /**
+     * <strong>EN:</strong> This constructor allows you to create a Logger. It is usually created from the Factory itself.<br>
+     * <strong>FR:</strong> Ce constructeur permet de créer un Logger. Il est généralement créer depuis le Factory lui-même.
+     *
+     * @param name          <br><strong>EN:</strong> The name of the Logger.<br><strong>FR:</strong> Le nom du Logger.
+     * @param loggerFactory <br><strong>EN:</strong> The Logger Factory.<br><strong>FR:</strong> Le Factory du Logger.
+     */
     public Logger(String name, ILoggerFactory loggerFactory) {
         this.name = name;
         this.loggerFactory = loggerFactory;
     }
 
+    /**
+     * <strong>EN:</strong> This constructor allows you to create a Logger. It is usually created from the Factory itself.<br>
+     * <strong>FR:</strong> Ce constructeur permet de créer un Logger. Il est généralement créer depuis le Factory lui-même.
+     *
+     * @param _class        <br><strong>EN:</strong>The parameter can generate the coming class where the Logger can be used or will be used. <br><strong>FR:</strong> Le paramètre peut engendrer la classe venant où le Logger peut être utiliser ou va être utiliser.
+     * @param loggerFactory <br><strong>EN:</strong> The Logger Factory.<br><strong>FR:</strong> Le Factory du Logger.
+     */
     public Logger(Class<?> _class, ILoggerFactory loggerFactory) {
         this(ILogger.performName(_class), loggerFactory);
     }

@@ -31,7 +31,7 @@ public interface ILogger extends Logger {
      * <strong>EN:</strong> The function is used to generate a name from a {@link Class}, the latter usable for retrieval and the user of a Logger.<br>
      * <strong>FR:</strong> La fonction permet de générer un nom depuis une {@link Class}, ce dernier utilisable pour la récupération et l'utilisateur d'un Logger.
      *
-     * @param _class <br><strong>EN:</strong>The parameter can generate the coming class or the Logger can be used or will be used. <br><strong>FR:</strong> Le paramètre peut engendrer la classe venant ou le Logger peut être utiliser ou va être utiliser.
+     * @param _class <br><strong>EN:</strong>The parameter can generate the coming class where the Logger can be used or will be used. <br><strong>FR:</strong> Le paramètre peut engendrer la classe venant où le Logger peut être utiliser ou va être utiliser.
      * @return <br><strong>EN:</strong> A name from a {@link Class}, the latter usable for retrieval and the user of a Logger.<br><strong>FR:</strong> Un nom depuis une {@link Class}, ce dernier utilisable pour la récupération et l'utilisateur d'un Logger.
      */
     static String performName(Class<?> _class) {
@@ -568,11 +568,29 @@ public interface ILogger extends Logger {
      * Cette énumération se comporte de façon à avoir une {@link Colors} permettant une meilleure visibilité en console lors de la récupération de cette dernière.
      */
     enum Levels {
+        /**
+         * <strong>EN:</strong> Trace level. {@link Colors}<br><strong>FR:</strong> Niveau de traçage. {@link Colors}
+         */
         TRACE(Colors.CYAN),
+        /**
+         * <strong>EN:</strong> Debug level. {@link Colors}<br><strong>FR:</strong> Niveau de débogage. {@link Colors}
+         */
         DEBUG(Colors.PURPLE),
+        /**
+         * <strong>EN:</strong> Info level. {@link Colors}<br><strong>FR:</strong> Niveau d'information. {@link Colors}
+         */
         INFO(Colors.BLUE),
+        /**
+         * <strong>EN:</strong> Warn level. {@link Colors}<br><strong>FR:</strong> Niveau d'avertissement. {@link Colors}
+         */
         WARN(Colors.YELLOW),
+        /**
+         * <strong>EN:</strong> Error level. {@link Colors}<br><strong>FR:</strong> Niveau d'erreur. {@link Colors}
+         */
         ERROR(Colors.RED),
+        /**
+         * <strong>EN:</strong> Console level. {@link Colors}<br><strong>FR:</strong> Niveau de console. {@link Colors}
+         */
         CONSOLE(Colors.GREEN);
 
         private final Colors colors;
@@ -596,14 +614,41 @@ public interface ILogger extends Logger {
      * Cette énumération se comporte de façon à avoir {@link String} de la couleur permettant une meilleur visibilité en console lors de la récupération de cette dernière.
      */
     enum Colors {
+        /**
+         * <strong>EN:</strong> Reset color. {@link String}<br><strong>FR:</strong> Réinitialiser la couleur. {@link String}
+         */
         RESET("\u001b[0m"),
+        /**
+         * <strong>EN:</strong> Black color. {@link String}<br><strong>FR:</strong> Couleur noir. {@link String}
+         */
         BLACK("\u001b[30m"),
+        /**
+         * <strong>EN:</strong> Red color. {@link String}<br><strong>FR:</strong> Couleur rouge. {@link String}
+         */
         RED("\u001b[31m"),
+        /**
+         * <strong>EN:</strong> Green color. {@link String}<br><strong>FR:</strong> Couleur verte. {@link String}
+         */
         GREEN("\u001b[32m"),
+        /**
+         * <strong>EN:</strong> Yellow color. {@link String}<br><strong>FR:</strong> Couleur jaune. {@link String}
+         */
         YELLOW("\u001b[33m"),
+        /**
+         * <strong>EN:</strong> Blue color. {@link String}<br><strong>FR:</strong> Couleur bleu. {@link String}
+         */
         BLUE("\u001b[34m"),
+        /**
+         * <strong>EN:</strong> Purple color. {@link String}<br><strong>FR:</strong> Couleur violette. {@link String}
+         */
         PURPLE("\u001b[35m"),
+        /**
+         * <strong>EN:</strong> Cyan color. {@link String}<br><strong>FR:</strong> Couleur cyan. {@link String}
+         */
         CYAN("\u001b[36m"),
+        /**
+         * <strong>EN:</strong> White color. {@link String}<br><strong>FR:</strong> Couleur blanche. {@link String}
+         */
         WHITE("\u001b[37m");
 
         private final String color;
