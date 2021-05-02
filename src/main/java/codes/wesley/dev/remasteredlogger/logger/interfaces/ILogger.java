@@ -18,181 +18,217 @@ import java.util.Arrays;
 import java.util.Date;
 
 /**
- * ILogger consiste à ajouter des traitements pour permettre l'émission et le stockage
- * de messages suite à des événements.
+ * <strong>EN:</strong> ILogger consists of adding processing to allow transmission and storage messages following events.<br>
+ * <strong>FR:</strong> ILogger consiste à ajouter un traitement pour permettre la transmission et le stockage des messages suite à des événements.
  *
  * @author Levasseur Wesley
  * @version 1.1.0
+ * @see org.slf4j.Logger
  */
 public interface ILogger extends Logger {
 
     /**
-     * Cette fonction permet de crée le nom du logger depuis directement l'objet {@link Class}.
+     * <strong>EN:</strong> The function is used to generate a name from a {@link Class}, the latter usable for retrieval and the user of a Logger.<br>
+     * <strong>FR:</strong> La fonction permet de générer un nom depuis une {@link Class}, ce dernier utilisable pour la récupération et l'utilisateur d'un Logger.
      *
-     * @param _class La classe suivie est celle ou se situe l'exécution du logger.
-     * @return Le nom du logger.
+     * @param _class <br><strong>EN:</strong>The parameter can generate the coming class or the Logger can be used or will be used. <br><strong>FR:</strong> Le paramètre peut engendrer la classe venant ou le Logger peut être utiliser ou va être utiliser.
+     * @return <br><strong>EN:</strong> A name from a {@link Class}, the latter usable for retrieval and the user of a Logger.<br><strong>FR:</strong> Un nom depuis une {@link Class}, ce dernier utilisable pour la récupération et l'utilisateur d'un Logger.
      */
     static String performName(Class<?> _class) {
         return _class.getPackageName() + _class.getName();
     }
 
     /**
-     * @return Le nom du Logger.
+     * @return <br><strong>EN:</strong> The name of the Logger.<br><strong>FR:</strong> Le nom du Logger.
      */
     String getName();
 
     /**
-     * @return Le nom raccourci du Logger.
+     * @return <br><strong>EN:</strong> The shortened name of the Logger.<br><strong>FR:</strong> Le nom raccourci du Logger.
      */
     private String getShortName() {
         return this.getName().substring(this.getName().lastIndexOf(".") + 1);
     }
 
     /**
-     * @return Le Factory du logger.
+     * @return <br><strong>EN:</strong> The Factory where the Logger is even located.<br><strong>FR:</strong> Le Factory ou se situe même le Logger.
      */
     ILoggerFactory getLoggerFactory();
 
 
     /**
+     * <strong>EN:</strong> The latter can be modified during a recreation of the Logger during the reimplementation.<br>
+     * <strong>FR:</strong> Cette dernière pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.
      * Cette dernière peut-être modifiable selon l'utilisateur.
      *
-     * @return Le formatage de la date.
+     * @return <br><strong>EN:</strong> Simple date format.<br><strong>FR:</strong> Le format de la date.
      */
     default SimpleDateFormat getDateFormat() {
         return new SimpleDateFormat("MMMM dd',' yyyy '-' hh:mm:ss aaa '('zZ')'");
     }
 
     /**
-     * Cette dernière peut-être modifiable selon l'utilisateur.
-     * Il gardera quand-même les 4 définitions qui sont:
-     * - {DATE} pour l'affichage de la date formaté.
-     * - {LEVELS} pour le niveau du Logger.
-     * - {NAME} pour le nom raccourci du Logger.
-     * - {MESSAGE} pour le message du Logger.
+     * <strong>EN:</strong> The latter can be modified during a recreation of the Logger during the reimplementation.<br>
+     * It will still keep the 4 definitions which are:<br>
+     * - {@code {DATE}} for displaying the date. {@link Date}<br>
+     * - {@code {LEVELS}} for the level of the Logger. {@link Levels}<br>
+     * - {@code {NAME}} for the name of the Logger.<br>
+     * - {@code {MESSAGE}} for the Logger message.<br>
+     * <strong>FR:</strong> Cette dernière pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.<br>
+     * Il gardera quand-même les 4 définitions qui sont:<br>
+     * - {@code {DATE}} pour l'affichage de la date. {@link Date}<br>
+     * - {@code {LEVELS}} pour le niveau du Logger. {@link Levels}<br>
+     * - {@code {NAME}} pour le nom du Logger.<br>
+     * - {@code {MESSAGE}} pour le message du Logger.<br>
      *
-     * @return Le formatage de la ligne.
+     * @return <br><strong>EN:</strong> The format of the line.<br><strong>FR:</strong> Le format de la ligne.
      */
     default String getLineFormat() {
         return "[{DATE}] [{LEVELS}-{NAME}] {MESSAGE}";
     }
 
     /**
-     * @return Si le Logger est actif en niveau {@link Levels} "Debug".
+     * <strong>EN:</strong> <br> The latter by default will return {@code true}, but can be modified during a re-creation of the Logger during the reimplementation.<br>
+     * <strong>FR:</strong> Cette dernière par défaut renverra {@code true}, mais pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.
+     *
+     * @return <br><strong>EN:</strong> If the Logger is active in {@link Levels#DEBUG}.<br><strong>FR:</strong> Si le Logger est actif en {@link Levels#DEBUG}.
      */
     default boolean isDebugging() {
         return true;
     }
 
     /**
-     * Cette fonction permet d'activer niveau {@link Levels} "Debug".
+     * <strong>EN:</strong> This enables the {@link Levels#DEBUG} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet d'activer le niveau {@link Levels#DEBUG} dans le Logger.
      */
     void activateDebugging();
 
     /**
-     * Cette fonction permet de désactiver niveau {@link Levels} "Debug".
+     * <strong>EN:</strong> This disables the {@link Levels#DEBUG} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet de désactiver le niveau {@link Levels#DEBUG} dans le Logger.
      */
     void deactivateDebugging();
 
     /**
-     * @return Si le Logger est actif en niveau {@link Levels} "Trace".
+     * <strong>EN:</strong> <br> The latter by default will return {@code true}, but can be modified during a re-creation of the Logger during the reimplementation.<br>
+     * <strong>FR:</strong> Cette dernière par défaut renverra {@code true}, mais pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.
+     *
+     * @return <br><strong>EN:</strong> If the Logger is active in {@link Levels#TRACE}.<br><strong>FR:</strong> Si le Logger est actif en {@link Levels#TRACE}.
      */
     default boolean isTracing() {
         return true;
     }
 
     /**
-     * Cette fonction permet d'activer niveau {@link Levels} "Trace".
+     * <strong>EN:</strong> This enables the {@link Levels#TRACE} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet d'activer le niveau {@link Levels#TRACE} dans le Logger.
      */
     void activateTracing();
 
     /**
-     * Cette fonction permet de désactiver niveau {@link Levels} "Trace".
+     * <strong>EN:</strong> This disables the {@link Levels#TRACE} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet de désactiver le niveau {@link Levels#TRACE} dans le Logger.
      */
     void deactivateTracing();
 
     /**
-     * @return Si le Logger est actif en niveau {@link Levels} "Info".
+     * <strong>EN:</strong> <br> The latter by default will return {@code true}, but can be modified during a re-creation of the Logger during the reimplementation.<br>
+     * <strong>FR:</strong> Cette dernière par défaut renverra {@code true}, mais pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.
+     *
+     * @return <br><strong>EN:</strong> If the Logger is active in {@link Levels#INFO}.<br><strong>FR:</strong> Si le Logger est actif en {@link Levels#INFO}.
      */
     default boolean isInforming() {
         return true;
     }
 
     /**
-     * Cette fonction permet d'activer niveau {@link Levels} "Info".
+     * <strong>EN:</strong> This enables the {@link Levels#INFO} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet d'activer le niveau {@link Levels#INFO} dans le Logger.
      */
     void activateInforming();
 
     /**
-     * Cette fonction permet de désactiver niveau {@link Levels} "Info".
+     * <strong>EN:</strong> This disables the {@link Levels#INFO} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet de désactiver le niveau {@link Levels#INFO} dans le Logger.
      */
     void deactivateInforming();
 
     /**
-     * @return Si le Logger est actif en niveau {@link Levels} "Warn".
+     * <strong>EN:</strong> <br> The latter by default will return {@code true}, but can be modified during a re-creation of the Logger during the reimplementation.<br>
+     * <strong>FR:</strong> Cette dernière par défaut renverra {@code true}, mais pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.
+     *
+     * @return <br><strong>EN:</strong> If the Logger is active in {@link Levels#WARN}.<br><strong>FR:</strong> Si le Logger est actif en {@link Levels#WARN}.
      */
     default boolean isWarning() {
         return true;
     }
 
     /**
-     * Cette fonction permet d'activer niveau {@link Levels} "Warn".
+     * <strong>EN:</strong> This enables the {@link Levels#WARN} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet d'activer le niveau {@link Levels#WARN} dans le Logger.
      */
     void activateWarning();
 
     /**
-     * Cette fonction permet de désactiver niveau {@link Levels} "Warn".
+     * <strong>EN:</strong> This disables the {@link Levels#WARN} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet de désactiver le niveau {@link Levels#WARN} dans le Logger.
      */
     void deactivateWarning();
 
     /**
-     * @return Si le Logger est actif en niveau {@link Levels} "Error".
+     * <strong>EN:</strong> <br> The latter by default will return {@code true}, but can be modified during a re-creation of the Logger during the reimplementation.<br>
+     * <strong>FR:</strong> Cette dernière par défaut renverra {@code true}, mais pouvant être modifier lors d'une recréation du Logger pendant la réimplementation.
+     *
+     * @return <br><strong>EN:</strong> If the Logger is active in {@link Levels#ERROR}.<br><strong>FR:</strong> Si le Logger est actif en {@link Levels#ERROR}.
      */
     default boolean isErroring() {
         return true;
     }
 
     /**
-     * Cette fonction permet d'activer niveau {@link Levels} "Error".
+     * <strong>EN:</strong> This enables the {@link Levels#ERROR} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet d'activer le niveau {@link Levels#ERROR} dans le Logger.
      */
     void activateErroring();
 
     /**
-     * Cette fonction permet de désactiver niveau {@link Levels} "Error".
+     * <strong>EN:</strong> This disables the {@link Levels#ERROR} level to be activated in the Logger.<br>
+     * <strong>FR:</strong> Cette dernière permet de désactiver le niveau {@link Levels#ERROR} dans le Logger.
      */
     void deactivateErroring();
 
     /**
-     * Cette fonction permet vérifier si le niveau {@link Levels} du Logger en paramètre est actif.
+     * <strong>EN:</strong> This function is used to check whether the level {@link Levels} of the Logger in parameter is active.<br>
+     * <strong>FR:</strong> Cette fonction permet vérifier si le niveau {@link Levels} du Logger en paramètre est actif.
      *
-     * @param level Le niveau du Logger
-     * @return Si le niveau {@link Levels} du Logger en paramètre est actif.
+     * @param level <br><strong>EN:</strong> The {@link Levels} level of the Logger.<br><strong>FR:</strong> Le niveau {@link Levels} du Logger.
+     * @return <br><strong>EN:</strong> If the level {@link Levels} of the Logger in parameter is active.<br><strong>FR:</strong> Si le niveau {@link Levels} du Logger en paramètre est actif.
      */
     private boolean isLevelsActive(Levels level) {
         return Levels.TRACE == level ? this.isTracing() : (Levels.DEBUG == level ? this.isDebugging() : (Levels.INFO == level ? this.isInforming() : (Levels.WARN == level ? this.isWarning() : Levels.ERROR != level || this.isErroring())));
     }
 
     /**
-     * @return La ligne formatée.
+     * @return <br><strong>EN:</strong> The formatted line.<br><strong>FR:</strong> La ligne formaté.
      */
     private String getFormattedLine(String date, String levels, String message) {
         return this.getLineFormat().replace("{DATE}", date).replace("{LEVELS}", levels).replace("{NAME}", this.getShortName()).replace("{MESSAGE}", message);
     }
 
     /**
-     * @return La date formatée.
+     * @return <br><strong>EN:</strong> The formatted date.<br><strong>FR:</strong> La date formaté.
      */
     private String getFormattedDate() {
         return this.getDateFormat().format(new Date());
     }
 
     /**
-     * Cette fonction permet de "log" et d'envoyer en console l'erreur
-     * puis de l'enregistrer dans le factory pour sauvegarder tous cela dans un fichier.
+     * <strong>EN:</strong> This function is used to send a message in the console and to save it in the factory in order to be saved later in a file.<br>
+     * <strong>FR:</strong> Cette fonction permet d'émettre un message en console et de se sauvegarder dans le factory afin d'être sauvegardé ultérieurement dans un fichier.
      *
-     * @param levels    Le niveau du Logger.
-     * @param message   Le message a inscrire dans le Logger.
-     * @param throwable Une erreur @Nullable.
+     * @param levels    <br><strong>EN:</strong> The {@link Levels} level of the Logger.<br><strong>FR:</strong> Le niveau {@link Levels} du Logger.
+     * @param message   <br><strong>EN:</strong> The message.<br><strong>FR:</strong> Le message.
+     * @param throwable <br><strong>EN:</strong> An {@link Nullable} error.<br><strong>FR:</strong> Une erreur {@link Nullable}.
      */
     private void log(Levels levels, String message, @Nullable Throwable throwable) {
         if (this.isLevelsActive(levels)) {
