@@ -1,9 +1,13 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
-group 'codes.wesley-dev'
-version '1.0.0'
+group BUILD_GROUP
+version BUILD_VERSION
+
+java.sourceCompatibility JavaVersion.VERSION_1_8
+java.targetCompatibility JavaVersion.VERSION_16
 
 repositories {
     mavenCentral()
@@ -12,8 +16,65 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha1'
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    implementation group: 'org.jetbrains', name: 'annotations', version: '20.1.0'
 }
 
 test {
     useJUnitPlatform()
 }
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+/*publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = BUILD_GROUP_ID
+            artifactId = BUILD_NAME
+            version = BUILD_VERSION
+            from components.java
+            pom {
+                name = BUILD_NAME
+                description = BUILD_DESCRIPTION
+                url = BUILD_URL
+                licenses {
+                    license {
+                        name = BUILD_LICENSE_NAME
+                        url = BUILD_LICENSE_URL
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'codes.wesley.dev'
+                        name = 'Levasseur Wesley'
+                        email = 'contact@wesley-dev.codes'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/kanekireal/RemasteredLogger.git'
+                    developerConnection = 'scm:git:ssh://github.com/kanekireal/RemasteredLogger.git'
+                    url = BUILD_URL
+                    tag = 'HEAD'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
+            def snapshotsRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            url = version.contains('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+}*/
