@@ -46,8 +46,8 @@ loggers but also the complexity of being able to create “Class” or single ev
 > ![Version][]
 
 ### Class Version
-| Class     |     Version    |   Security |
-|: ------------- |: ------------- :|: --------- :|
+| Class | Version | Security |
+| ------ | ------ | ------ |
 | Logger | ![LoggerVersion][] | ![SecurityCheck][] |
 | ILogger | ![ILoggerVersion][] | ![SecurityCheck][] |
 | LoggerFactory | ![LoggerFactoryVersion][] | ![SecurityCheck][] |
