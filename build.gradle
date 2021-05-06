@@ -1,16 +1,31 @@
-plugins {
-    id 'java'
-    id 'maven-publish'
-    id 'signing'
+import java.nio.charset.StandardCharsets
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0'
+    }
 }
 
-group BUILD_GROUP
-version BUILD_VERSION
+apply plugin: 'io.codearte.nexus-staging'
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+}
+
+version = BUILD_VERSION
+group = BUILD_GROUP
+description = BUILD_DESCRIPTION
 archivesBaseName = BUILD_NAME
 
-java.sourceCompatibility JavaVersion.VERSION_11
-java.targetCompatibility JavaVersion.VERSION_16
-compileJava.options.encoding = 'UTF-8'
+compileJava.options.encoding = StandardCharsets.UTF_8.name()
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_16
 
 repositories {
     mavenCentral()
@@ -25,31 +40,7 @@ dependencies {
     implementation group: 'org.jetbrains', name: 'annotations', version: '20.1.0'
 }
 
-test {
-    useJUnitPlatform()
-}
-
-task sourcesJar(type: Jar) {
-    classifier 'sources'
-    from sourceSets.main.allJava
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives jar
-    archives sourcesJar
-    archives javadocJar
-}
-
-signing {
-    sign configurations.archives
-}
-
-java {
+jar {
     manifest {
         attributes 'Build-By': BUILD_AUTHOR,
                 'Build-Date': new Date(),
@@ -58,34 +49,37 @@ java {
                 'Name': BUILD_NAME,
                 'Created-By': BUILD_AUTHOR
     }
-    withJavadocJar()
-    withSourcesJar()
 }
 
-javadoc {
-    options.addBooleanOption('html5', true)
-    options.encoding = 'UTF-8'
+if (JavaVersion.current().isJava8Compatible()) {
+    tasks.withType(Javadoc) {
+        options.addBooleanOption('Xdoclint:none', true)
+    }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives jar, javadocJar, sourcesJar
 }
 
 publishing {
-    repositories {
-        maven {
-            def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
-            def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
-            url = version.contains('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-            credentials {
-                username = System.getenv('oss_username')
-                password = System.getenv('oss_password')
-            }
-        }
-    }
     publications {
         mavenJava(MavenPublication) {
             pom {
-                name = BUILD_NAME
                 description = BUILD_DESCRIPTION
+                name = BUILD_NAME
                 url = BUILD_URL
                 inceptionYear = BUILD_INCEPTION_YEAR
+                packaging 'jar'
                 licenses {
                     license {
                         name = BUILD_LICENSE_NAME
@@ -110,6 +104,36 @@ publishing {
             artifactId = BUILD_ARTIFACT_ID
             version = BUILD_VERSION
             from components.java
+            artifact(sourcesJar) {
+                classifier = 'sources'
+            }
+            artifact(javadocJar) {
+                classifier = 'javadoc'
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+            url = version.endsWith('-SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = System.getenv('oss_username')
+                password = System.getenv('oss_password')
+            }
+        }
+    }
+    signing {
+        required {
+            !version.toString().endsWith('-SNAPSHOT') && tasks.withType(PublishToMavenRepository).find {
+                gradle.taskGraph.hasTask it
+            }
+        }
+        sign publishing.publications
+    }
+    javadoc {
+        if (JavaVersion.current().isJava9Compatible()) {
+            options.addBooleanOption('html5', true)
         }
     }
 }
