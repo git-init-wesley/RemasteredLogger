@@ -17,9 +17,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * <strong>EN:</strong> ILogger consists of managing all {@link ILogger} and then managing the backup.<br>
+ * <strong>EN:</strong> LoggerFactory consists of managing all {@link ILogger} and then managing the backup.<br>
  * This class is a default LoggerFactory if the user does not want to create one himself by implementing {@link ILoggerFactory}.<br>
- * <strong>FR:</strong> ILogger consiste à gérer tous les {@link ILogger} puis de gérer la sauvegarder.
+ * <strong>FR:</strong> LoggerFactory consiste à gérer tous les {@link ILogger} puis de gérer la sauvegarder.
  * Cette classe est un LoggerFactory de défaut si l'utilisateur ne souhaite pas en crée lui-même en implémentant {@link ILoggerFactory}.
  *
  * @author Levasseur Wesley
