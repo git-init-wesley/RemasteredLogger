@@ -1,9 +1,9 @@
 ---
-Name: EN - Bug report
-About: Create a report to help us improve
-Title: ''
-Labels: ''
-Assignees: ''
+name: EN - Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
