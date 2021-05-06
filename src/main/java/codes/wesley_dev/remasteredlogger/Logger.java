@@ -10,6 +10,7 @@ package codes.wesley_dev.remasteredlogger;
 
 import codes.wesley_dev.remasteredlogger.interfaces.ILogger;
 import codes.wesley_dev.remasteredlogger.interfaces.ILoggerFactory;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <strong>EN:</strong> Logger consists of adding processing to allow transmission and storage messages following events.<br>
@@ -18,7 +19,7 @@ import codes.wesley_dev.remasteredlogger.interfaces.ILoggerFactory;
  * Cette classe est un Logger de défaut si l'utilisateur ne souhaite pas en crée lui-même en implémentant {@link ILogger}, par défaut tous les {@link Levels} sont activé.
  *
  * @author Levasseur Wesley
- * @version 1.1.0
+ * @version 1.1.2
  * @see ILogger
  */
 public class Logger implements ILogger {
@@ -34,7 +35,7 @@ public class Logger implements ILogger {
      * @param name          <br><strong>EN:</strong> The name of the Logger.<br><strong>FR:</strong> Le nom du Logger.
      * @param loggerFactory <br><strong>EN:</strong> The Logger Factory.<br><strong>FR:</strong> Le Factory du Logger.
      */
-    public Logger(String name, ILoggerFactory loggerFactory) {
+    public Logger(@NotNull final String name, @NotNull final ILoggerFactory loggerFactory) {
         this.name = name;
         this.loggerFactory = loggerFactory;
     }
@@ -46,7 +47,7 @@ public class Logger implements ILogger {
      * @param _class        <br><strong>EN:</strong>The parameter can generate the coming class where the Logger can be used or will be used. <br><strong>FR:</strong> Le paramètre peut engendrer la classe venant où le Logger peut être utiliser ou va être utiliser.
      * @param loggerFactory <br><strong>EN:</strong> The Logger Factory.<br><strong>FR:</strong> Le Factory du Logger.
      */
-    public Logger(Class<?> _class, ILoggerFactory loggerFactory) {
+    public Logger(@NotNull final Class<?> _class, @NotNull final ILoggerFactory loggerFactory) {
         this(ILogger.performName(_class), loggerFactory);
     }
 

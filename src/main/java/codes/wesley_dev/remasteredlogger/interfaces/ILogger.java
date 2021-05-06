@@ -7,6 +7,7 @@
 
 package codes.wesley_dev.remasteredlogger.interfaces;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -22,7 +23,7 @@ import java.util.Date;
  * <strong>FR:</strong> ILogger consiste à ajouter un traitement pour permettre la transmission et le stockage des messages suite à des événements.
  *
  * @author Levasseur Wesley
- * @version 1.1.0
+ * @version 1.1.2
  * @see org.slf4j.Logger
  */
 public interface ILogger extends Logger {
@@ -34,7 +35,7 @@ public interface ILogger extends Logger {
      * @param _class <br><strong>EN:</strong>The parameter can generate the coming class where the Logger can be used or will be used. <br><strong>FR:</strong> Le paramètre peut engendrer la classe venant où le Logger peut être utiliser ou va être utiliser.
      * @return <br><strong>EN:</strong> A name from a {@link Class}, the latter usable for retrieval and the user of a Logger.<br><strong>FR:</strong> Un nom depuis une {@link Class}, ce dernier utilisable pour la récupération et l'utilisateur d'un Logger.
      */
-    static String performName(Class<?> _class) {
+    static String performName(@NotNull final Class<?> _class) {
         return _class.getPackageName() + _class.getName();
     }
 
@@ -203,14 +204,14 @@ public interface ILogger extends Logger {
      * @param level <br><strong>EN:</strong> The {@link Levels} level of the Logger.<br><strong>FR:</strong> Le niveau {@link Levels} du Logger.
      * @return <br><strong>EN:</strong> If the level {@link Levels} of the Logger in parameter is active.<br><strong>FR:</strong> Si le niveau {@link Levels} du Logger en paramètre est actif.
      */
-    private boolean isLevelsActive(Levels level) {
+    private boolean isLevelsActive(@NotNull final Levels level) {
         return Levels.TRACE == level ? this.isTracing() : (Levels.DEBUG == level ? this.isDebugging() : (Levels.INFO == level ? this.isInforming() : (Levels.WARN == level ? this.isWarning() : Levels.ERROR != level || this.isErroring())));
     }
 
     /**
      * @return <br><strong>EN:</strong> The formatted line.<br><strong>FR:</strong> La ligne formaté.
      */
-    private String getFormattedLine(String date, String levels, String message) {
+    private String getFormattedLine(@NotNull final String date, @NotNull final String levels, @NotNull final String message) {
         return this.getLineFormat().replace("{DATE}", date).replace("{LEVELS}", levels).replace("{NAME}", this.getShortName()).replace("{MESSAGE}", message);
     }
 
@@ -229,7 +230,7 @@ public interface ILogger extends Logger {
      * @param message   <br><strong>EN:</strong> The message.<br><strong>FR:</strong> Le message.
      * @param throwable <br><strong>EN:</strong> An {@link Nullable} error.<br><strong>FR:</strong> Une erreur {@link Nullable}.
      */
-    private void log(Levels levels, String message, @Nullable Throwable throwable) {
+    private void log(@NotNull final Levels levels, @NotNull final String message, @Nullable Throwable throwable) {
         if (this.isLevelsActive(levels)) {
             final String date = this.getFormattedDate();
             final String line = this.getFormattedLine(date, levels.toString(), message);
@@ -246,14 +247,14 @@ public interface ILogger extends Logger {
         }
     }
 
-    private void formatAndLog(Levels levels, String format, Object a, Object a2) {
+    private void formatAndLog(@NotNull final Levels levels, String format, Object a, Object a2) {
         if (this.isLevelsActive(levels)) {
             FormattingTuple fT = MessageFormatter.format(format, a, a2);
             this.log(levels, fT.getMessage(), fT.getThrowable());
         }
     }
 
-    private void formatAndLog(Levels levels, String format, Object... a) {
+    private void formatAndLog(@NotNull final Levels levels, String format, Object... a) {
         if (this.isLevelsActive(levels)) {
             FormattingTuple fT = MessageFormatter.arrayFormat(format, a);
             this.log(levels, fT.getMessage(), fT.getThrowable());
@@ -653,7 +654,7 @@ public interface ILogger extends Logger {
 
         private final String color;
 
-        Colors(String color) {
+        Colors(@NotNull final String color) {
             this.color = color;
         }
 

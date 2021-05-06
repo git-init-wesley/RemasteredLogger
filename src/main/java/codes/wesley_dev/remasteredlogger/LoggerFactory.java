@@ -9,6 +9,7 @@ package codes.wesley_dev.remasteredlogger;
 
 import codes.wesley_dev.remasteredlogger.interfaces.ILogger;
 import codes.wesley_dev.remasteredlogger.interfaces.ILoggerFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.concurrent.ConcurrentMap;
  * Cette classe est un LoggerFactory de défaut si l'utilisateur ne souhaite pas en crée lui-même en implémentant {@link ILoggerFactory}.
  *
  * @author Levasseur Wesley
- * @version 1.1.0
+ * @version 1.1.2
  * @see ILogger
  */
 public class LoggerFactory implements ILoggerFactory {
@@ -38,7 +39,7 @@ public class LoggerFactory implements ILoggerFactory {
      *
      * @param dir <br><strong>EN:</strong> The folder where the message recording files will be saved.<br><strong>FR:</strong> Le dossier où les fichiers d'enregistrement des messages seront enregistrés.
      */
-    public LoggerFactory(File dir) throws InternalError {
+    public LoggerFactory(@NotNull final File dir) throws InternalError {
         if (!dir.exists())
             if (!dir.mkdir())
                 throw new InternalError("The Logger folder couldn't be created.\nThis could be due to a lack of permission or inaccurate path.");

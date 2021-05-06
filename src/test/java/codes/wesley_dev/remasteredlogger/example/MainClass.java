@@ -1,4 +1,4 @@
-package codes.wesley_dev.remasteredlogger.example_one;
+package codes.wesley_dev.remasteredlogger.example;
 
 import codes.wesley_dev.remasteredlogger.Logger;
 import codes.wesley_dev.remasteredlogger.LoggerFactory;

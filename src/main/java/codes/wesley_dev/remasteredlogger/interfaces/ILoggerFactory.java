@@ -8,6 +8,7 @@
 package codes.wesley_dev.remasteredlogger.interfaces;
 
 import codes.wesley_dev.remasteredlogger.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -24,7 +25,7 @@ import java.util.concurrent.ConcurrentMap;
  * <strong>FR:</strong> ILogger consiste à gérer tous les {@link ILogger} puis de gérer la sauvegarder.
  *
  * @author Levasseur Wesley
- * @version 1.1.0
+ * @version 1.1.2
  */
 public interface ILoggerFactory {
 
@@ -41,7 +42,7 @@ public interface ILoggerFactory {
      *
      * @param log <br><strong>EN:</strong> The message.<br><strong>FR:</strong> Le message.
      */
-    default void addLog(String log) {
+    default void addLog(@NotNull final String log) {
         this.getLogs().add(log);
     }
 
@@ -66,7 +67,7 @@ public interface ILoggerFactory {
      * @param name <br><strong>EN:</strong> The name of the Logger.<br><strong>FR:</strong> Le nom du Logger.
      * @return <br><strong>EN:</strong> The Logger {@link ILogger} retrieve or create.<br><strong>FR:</strong> Le Logger {@link ILogger} récupérer ou créer.
      */
-    default ILogger getLogger(String name) {
+    default ILogger getLogger(@NotNull final String name) {
         ILogger logger = this.getLoggers().get(name);
         if (logger != null) return logger;
         else {
@@ -83,7 +84,7 @@ public interface ILoggerFactory {
      * @param _class <br><strong>EN:</strong> The class where the Logger is generally performed.<br><strong>FR:</strong> Le class où le Logger s'effectue en général.
      * @return <br><strong>EN:</strong> The Logger {@link ILogger} retrieve or create.<br><strong>FR:</strong> Le Logger {@link ILogger} récupérer ou créer.
      */
-    default ILogger getLogger(Class<?> _class) {
+    default ILogger getLogger(@NotNull final Class<?> _class) {
         ILogger logger = this.getLoggers().get(ILogger.performName(_class));
         if (logger != null) return logger;
         else {
@@ -110,7 +111,7 @@ public interface ILoggerFactory {
      * @param allLogs <br><strong>EN:</strong> The messages that need to be saved.<br><strong>FR:</strong> Les messages qu'ils faut sauvegarder.
      * @throws IOException <br><strong>EN:</strong> An error may occur while saving the file.<br><strong>FR:</strong> Une erreur peut survenir pendant l'enregistrement du fichier.
      */
-    default void save(List<String>[] allLogs) throws IOException {
+    default void save(@NotNull final List<String>[] allLogs) throws IOException {
         List<String> logs = new ArrayList<>();
         Arrays.asList(allLogs).forEach(logs::addAll);
         this.save(logs);
@@ -124,7 +125,7 @@ public interface ILoggerFactory {
      * @param logs <br><strong>EN:</strong> The messages that need to be saved.<br><strong>FR:</strong> Les messages qu'ils faut sauvegarder.
      * @throws IOException <br><strong>EN:</strong> An error may occur while saving the file.<br><strong>FR:</strong> Une erreur peut survenir pendant l'enregistrement du fichier.
      */
-    default void save(List<String> logs) throws IOException {
+    default void save(@NotNull final List<String> logs) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.getLogsDir().getPath() + "/" + this.getDateFormat().format(new Date()).replace(":", "-").replace(" ", "_") + ".log"), StandardCharsets.UTF_8));
         for (String line : logs) {
             writer.write(line);
