@@ -28,8 +28,6 @@ test {
 }
 
 java {
-    withJavadocJar()
-    withSourcesJar()
     manifest {
         attributes 'Build-By': BUILD_AUTHOR,
                 'Build-Date': new Date(),
@@ -38,6 +36,8 @@ java {
                 'Name': BUILD_NAME,
                 'Created-By': BUILD_AUTHOR
     }
+    withJavadocJar()
+    withSourcesJar()
 }
 
 javadoc {
@@ -45,7 +45,23 @@ javadoc {
     options.encoding = 'UTF-8'
 }
 
-/*publishing {
+publishing {
+    repositories {
+        maven {
+            if (System.getenv("SonaType") != null) {
+                def releasesRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
+                def snapshotsRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+                url = version.contains('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            }else {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/" + BUILD_OWNER + "/" + BUILD_NAME)
+                credentials {
+                    username = System.getenv("USERNAME")
+                    password = System.getenv("TOKEN")
+                }
+            }
+        }
+    }
     publications {
         mavenJava(MavenPublication) {
             groupId = BUILD_GROUP_ID
@@ -65,7 +81,7 @@ javadoc {
                 }
                 developers {
                     developer {
-                        id = 'codes.wesley.dev'
+                        id = BUILD_GROUP_ID
                         name = 'Levasseur Wesley'
                         email = 'contact@wesley-dev.codes'
                     }
@@ -79,11 +95,4 @@ javadoc {
             }
         }
     }
-    repositories {
-        maven {
-            def releasesRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
-            def snapshotsRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-            url = version.contains('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-        }
-    }
-}*/
+}

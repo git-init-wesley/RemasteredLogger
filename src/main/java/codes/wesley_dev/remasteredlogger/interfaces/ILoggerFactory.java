@@ -5,9 +5,9 @@
  * Création datant du 25/4/2021 à 17:21:22.
  */
 
-package codes.wesley.dev.remasteredlogger.logger.interfaces;
+package codes.wesley_dev.remasteredlogger.interfaces;
 
-import codes.wesley.dev.remasteredlogger.logger.Logger;
+import codes.wesley_dev.remasteredlogger.Logger;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

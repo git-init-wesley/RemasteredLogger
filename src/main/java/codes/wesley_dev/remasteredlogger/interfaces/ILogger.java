@@ -5,7 +5,7 @@
  * Création datant du 25/4/2021 à 16:41:28.
  */
 
-package codes.wesley.dev.remasteredlogger.logger.interfaces;
+package codes.wesley_dev.remasteredlogger.interfaces;
 
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;

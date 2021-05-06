@@ -5,10 +5,10 @@
  * Création datant du 25/4/2021 à 16:10:17.
  */
 
-package codes.wesley.dev.remasteredlogger.logger;
+package codes.wesley_dev.remasteredlogger;
 
-import codes.wesley.dev.remasteredlogger.logger.interfaces.ILogger;
-import codes.wesley.dev.remasteredlogger.logger.interfaces.ILoggerFactory;
+import codes.wesley_dev.remasteredlogger.interfaces.ILogger;
+import codes.wesley_dev.remasteredlogger.interfaces.ILoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;

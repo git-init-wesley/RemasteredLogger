@@ -5,11 +5,11 @@
  * Création datant du 25/4/2021 à 15:58:22.
  */
 
-package codes.wesley.dev.remasteredlogger.logger;
+package codes.wesley_dev.remasteredlogger;
 
 
-import codes.wesley.dev.remasteredlogger.logger.interfaces.ILogger;
-import codes.wesley.dev.remasteredlogger.logger.interfaces.ILoggerFactory;
+import codes.wesley_dev.remasteredlogger.interfaces.ILogger;
+import codes.wesley_dev.remasteredlogger.interfaces.ILoggerFactory;
 
 /**
  * <strong>EN:</strong> Logger consists of adding processing to allow transmission and storage messages following events.<br>
