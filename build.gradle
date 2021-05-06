@@ -1,10 +1,12 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'signing'
 }
 
 group BUILD_GROUP
 version BUILD_VERSION
+archivesBaseName = BUILD_NAME
 
 java.sourceCompatibility JavaVersion.VERSION_11
 java.targetCompatibility JavaVersion.VERSION_16
@@ -25,6 +27,26 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+task sourcesJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
 }
 
 java {
@@ -48,26 +70,17 @@ javadoc {
 publishing {
     repositories {
         maven {
-            if (System.getenv("SonaType") != null) {
-                def releasesRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
-                def snapshotsRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-                url = version.contains('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-            }else {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/" + BUILD_OWNER + "/" + BUILD_NAME)
-                credentials {
-                    username = System.getenv("USERNAME")
-                    password = System.getenv("TOKEN")
-                }
+            def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+            url = version.contains('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = System.getenv('oss_username')
+                password = System.getenv('oss_password')
             }
         }
     }
     publications {
         mavenJava(MavenPublication) {
-            groupId = BUILD_GROUP_ID
-            artifactId = BUILD_NAME
-            version = BUILD_VERSION
-            from components.java
             pom {
                 name = BUILD_NAME
                 description = BUILD_DESCRIPTION
@@ -81,7 +94,7 @@ publishing {
                 }
                 developers {
                     developer {
-                        id = BUILD_GROUP_ID
+                        id = 'levasseur.wesley'
                         name = 'Levasseur Wesley'
                         email = 'contact@wesley-dev.codes'
                     }
@@ -93,6 +106,10 @@ publishing {
                     tag = 'HEAD'
                 }
             }
+            groupId = BUILD_GROUP_ID
+            artifactId = BUILD_ARTIFACT_ID
+            version = BUILD_VERSION
+            from components.java
         }
     }
 }
