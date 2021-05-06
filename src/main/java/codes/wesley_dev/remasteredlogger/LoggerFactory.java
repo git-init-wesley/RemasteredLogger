@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentMap;
  * Cette classe est un LoggerFactory de défaut si l'utilisateur ne souhaite pas en crée lui-même en implémentant {@link ILoggerFactory}.
  *
  * @author Levasseur Wesley
- * @version 1.1.2
+ * @version 1.1.4
  * @see ILogger
  */
 public class LoggerFactory implements ILoggerFactory {

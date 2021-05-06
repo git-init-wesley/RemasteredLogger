@@ -8,21 +8,21 @@
 
 [Versioning]: https://img.shields.io/static/v1?label=Versioning&message=View&style=for-the-badge&color=ff69b4
 
-[Release]: https://img.shields.io/static/v1?label=Release&message=v1.1.3&style=for-the-badge&color=red
+[Release]: https://img.shields.io/static/v1?label=Release&message=v1.1.4&style=for-the-badge&color=red
 
-[Version]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
+[Version]: https://img.shields.io/static/v1?label=Version&message=1.1.4&style=for-the-badge&color=light_green
 
 [SecurityCheck]: https://img.shields.io/static/v1?label=Security&message=&check;&style=for-the-badge&color=light_green
 
 [SecurityUncheck]: https://img.shields.io/static/v1?label=Security&message=&cross;&style=for-the-badge&color=red
 
-[LoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
+[LoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.4&style=for-the-badge&color=light_green
 
-[ILoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
+[ILoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.4&style=for-the-badge&color=light_green
 
-[LoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
+[LoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.4&style=for-the-badge&color=light_green
 
-[ILoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
+[ILoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.4&style=for-the-badge&color=light_green
 
 # RemasteredLogger
 
@@ -58,7 +58,7 @@ loggers but also the complexity of being able to create “Class” or single ev
 
 ```groovy
 // https://mvnrepository.com/artifact/codes.wesley-dev/remasteredlogger
-implementation group: 'codes.wesley-dev', name: 'remasteredlogger', version: '1.1.3'
+implementation group: 'codes.wesley-dev', name: 'remasteredlogger', version: '1.1.4'
 ```
 
 ## Dependencies
@@ -73,6 +73,14 @@ implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha1'
 // https://mvnrepository.com/artifact/org.jetbrains/annotations
 implementation group: 'org.jetbrains', name: 'annotations', version: '20.1.0'
 ```
+
+## Compatibility
+
+| Version | Java Compatibility |
+| ------ | ------  |
+| 1.1.4 | Java 8 and Upper |
+| 1.1.3 | Java 9 and Upper |
+| <= 1.1.2 | :x: (Security and Compatibility) |
 
 ## Author(s)
 

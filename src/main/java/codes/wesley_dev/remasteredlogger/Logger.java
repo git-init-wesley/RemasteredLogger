@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * Cette classe est un Logger de défaut si l'utilisateur ne souhaite pas en crée lui-même en implémentant {@link ILogger}, par défaut tous les {@link Levels} sont activé.
  *
  * @author Levasseur Wesley
- * @version 1.1.2
+ * @version 1.1.4
  * @see ILogger
  */
 public class Logger implements ILogger {

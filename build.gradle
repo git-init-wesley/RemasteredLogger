@@ -1,3 +1,4 @@
+//file:noinspection GroovyAssignabilityCheck
 import java.nio.charset.StandardCharsets
 
 buildscript {
@@ -24,7 +25,8 @@ description = BUILD_DESCRIPTION
 archivesBaseName = BUILD_NAME
 
 compileJava.options.encoding = StandardCharsets.UTF_8.name()
-sourceCompatibility = JavaVersion.VERSION_1_9
+javadoc.options.encoding = StandardCharsets.UTF_8.name()
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
@@ -57,11 +59,13 @@ if (JavaVersion.current().isJava8Compatible()) {
 }
 
 task javadocJar(type: Jar) {
+    //noinspection GrDeprecatedAPIUsage
     classifier = 'javadoc'
     from javadoc
 }
 
 task sourcesJar(type: Jar) {
+    //noinspection GrDeprecatedAPIUsage
     classifier = 'sources'
     from sourceSets.main.allSource
 }

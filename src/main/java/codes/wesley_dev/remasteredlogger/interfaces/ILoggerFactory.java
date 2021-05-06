@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentMap;
  * <strong>FR:</strong> ILogger consiste à gérer tous les {@link ILogger} puis de gérer la sauvegarder.
  *
  * @author Levasseur Wesley
- * @version 1.1.2
+ * @version 1.1.4
  */
 public interface ILoggerFactory {
 
