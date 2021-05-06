@@ -57,7 +57,7 @@ loggers but also the complexity of being able to create “Class” or single ev
 ## Use
 
 ```groovy
-// https://mvnrepository.com/artifact/org.jetbrains/annotations
+// https://mvnrepository.com/artifact/codes.wesley-dev/remasteredlogger
 implementation group: 'codes.wesley-dev', name: 'remasteredlogger', version: '1.1.2'
 ```
 
@@ -74,6 +74,6 @@ implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha1'
 implementation group: 'org.jetbrains', name: 'annotations', version: '20.1.0'
 ```
 
-## Auteurs
+## Author(s)
 
 > **Wesley Levasseur** — *Creator, Initial Work* - [KanekiReal](https://github.com/kanekireal)
