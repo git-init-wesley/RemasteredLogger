@@ -15,11 +15,6 @@ public class MainClass {
 
     private final LoggerFactory loggerFactory;
 
-    public LoggerFactory getLoggerFactory() {
-        return this.loggerFactory;
-    }
-
-
     public MainClass() {
         this.loggerFactory = new LoggerFactory(new File("test"));
 
@@ -48,5 +43,9 @@ public class MainClass {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public LoggerFactory getLoggerFactory() {
+        return this.loggerFactory;
     }
 }
