@@ -24,8 +24,7 @@ description = BUILD_DESCRIPTION
 archivesBaseName = BUILD_NAME
 
 compileJava.options.encoding = StandardCharsets.UTF_8.name()
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_16
+sourceCompatibility = JavaVersion.VERSION_1_9
 
 repositories {
     mavenCentral()

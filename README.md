@@ -8,21 +8,21 @@
 
 [Versioning]: https://img.shields.io/static/v1?label=Versioning&message=View&style=for-the-badge&color=ff69b4
 
-[Release]: https://img.shields.io/static/v1?label=Release&message=v1.1.2&style=for-the-badge&color=red
+[Release]: https://img.shields.io/static/v1?label=Release&message=v1.1.3&style=for-the-badge&color=red
 
-[Version]: https://img.shields.io/static/v1?label=Version&message=1.1.2&style=for-the-badge&color=light_green
+[Version]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
 
 [SecurityCheck]: https://img.shields.io/static/v1?label=Security&message=&check;&style=for-the-badge&color=light_green
 
 [SecurityUncheck]: https://img.shields.io/static/v1?label=Security&message=&cross;&style=for-the-badge&color=red
 
-[LoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.2&style=for-the-badge&color=light_green
+[LoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
 
-[ILoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.2&style=for-the-badge&color=light_green
+[ILoggerVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
 
-[LoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.2&style=for-the-badge&color=light_green
+[LoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
 
-[ILoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.2&style=for-the-badge&color=light_green
+[ILoggerFactoryVersion]: https://img.shields.io/static/v1?label=Version&message=1.1.3&style=for-the-badge&color=light_green
 
 # RemasteredLogger
 
@@ -58,13 +58,13 @@ loggers but also the complexity of being able to create “Class” or single ev
 
 ```groovy
 // https://mvnrepository.com/artifact/codes.wesley-dev/remasteredlogger
-implementation group: 'codes.wesley-dev', name: 'remasteredlogger', version: '1.1.2'
+implementation group: 'codes.wesley-dev', name: 'remasteredlogger', version: '1.1.3'
 ```
 
 ## Dependencies
 
 > Jetbrains Annotations
-> 
+>
 > SLF4j
 
 ```groovy
