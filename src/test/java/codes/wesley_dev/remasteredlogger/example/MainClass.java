@@ -23,6 +23,8 @@ public class MainClass {
         final Logger logger1_ = (Logger) logger1;
         final Logger mainClassLogger = (Logger) this.loggerFactory.getLogger(this.getClass());
         final ILogger mainClassLogger_ = mainClassLogger;
+        final Logger _mainClassLogger = (Logger) this.loggerFactory.getLogger(MainClass.class);
+        final ILogger _mainClassLogger_ = _mainClassLogger;
 
         try {
             this.loggerFactory.save();
