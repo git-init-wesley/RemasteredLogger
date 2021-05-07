@@ -26,6 +26,32 @@ public class MainClass {
         final Logger _mainClassLogger = (Logger) this.loggerFactory.getLogger(MainClass.class);
         final ILogger _mainClassLogger_ = _mainClassLogger;
 
+        logger1.isDebugging();
+        logger1.activateDebugging();
+        logger1.deactivateDebugging();
+
+        logger1.isInforming();
+        logger1.activateInforming();
+        logger1.deactivateInforming();
+
+        logger1.isErroring();
+        logger1.activateErroring();
+        logger1.deactivateErroring();
+
+        logger1.isTracing();
+        logger1.activateTracing();
+        logger1.deactivateTracing();
+
+        logger1.isWarning();
+        logger1.activateWarning();
+        logger1.deactivateWarning();
+
+        logger1.debug("message");
+        logger1.info("message", new Throwable("with errors"));
+        //logger1.error("{MessageFormater}", new Object());
+        //logger1.trace("{MessageFormater}", new Object(), new Object());
+        //logger1.warn("{MessageFormater}", new Object(), new Object(), ...);
+
         try {
             this.loggerFactory.save();
         } catch (IOException e) {
