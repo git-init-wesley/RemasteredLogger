@@ -33,7 +33,7 @@ loggers but also the complexity of being able to create “Class” or single ev
 
 > ![Started][]
 >
-> [ ![Licence][] ](https://github.com/Etsuko-Network/API-Java/blob/main/LICENCE)
+> [ ![Licence][] ](https://github.com/kanekireal/RemasteredLogger/blob/main/LICENSE)
 >
 > [ ![Javadoc][] ](https://kanekireal.github.io/RemasteredLogger/)
 >
